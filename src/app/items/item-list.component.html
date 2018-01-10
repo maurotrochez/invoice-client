@@ -11,7 +11,7 @@
       </div>
       <div class="col-md-0">
         <a class="btn btn-primary btn-sm"
-           [routerLink]="['/itemEdit/0']">
+           [routerLink]="['/itemsEdit/0']">
           Add
         </a>
       </div>
@@ -31,16 +31,16 @@
         </thead>
         <tbody>
         <tr *ngFor='let item of items'>
-          <td><a [routerLink]="['/item', item.itemId]">
-            {{item.code}}
+          <td><a [routerLink]="['/item', item.ItemId]">
+            {{item.Code}}
           </a>
           </td>
-          <td>{{ item.name}}</td>
-          <td>{{ item.initialValue}}</td>
+          <td>{{ item.Name}}</td>
+          <td>{{ item.Value | currency }}</td>
 
           <td style="text-align: right;">
             <a class="btn btn-primary btn-sm"
-               [routerLink]="['/itemEdit', item.itemId]">
+               [routerLink]="['/itemsEdit', item.ItemId]">
               Edit
             </a>
           </td>

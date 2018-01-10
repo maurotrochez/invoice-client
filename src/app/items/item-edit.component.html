@@ -1,3 +1,74 @@
-<p>
-  item-edit works!
-</p>
+<div class="blog-main">
+  <div class="sidebar-module sidebar-module-inset">
+
+    <h3>{{pageTitle}}</h3>
+    <hr>
+
+    <div >
+      <form
+        novalidate
+        (ngSubmit)="saveItem()"
+        [formGroup]="itemForm">
+
+
+        <fieldset>
+          <div class="form-group row"
+               [ngClass]="{'has-danger': displayMessage.code }">
+            <label class="col-md-2 control-label" for="codeId">Code</label>
+
+            <div class="col-md-6">
+             <input class="form-control"
+                       id="codeId"
+                       placeholder="Code"
+                       type="text"
+                       formControlName="Code"/>
+              <span class="help-block" *ngIf="displayMessage.code">
+                                {{displayMessage.code}}
+                        </span>
+            </div>
+          </div>
+          <div class="form-group row" [ngClass]="{'has-error': displayMessage.dependencia}">
+            <label class="col-md-2 control-label form-control-sm" for="nameId">Name</label>
+
+            <div class="col-md-8">
+              <input class="form-control form-control-sm"
+                     id="nameId"
+                     type="text"
+                     placeholder="Name"
+                     formControlName="Name"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    style="width:80px;margin-right:10px"
+                                    [disabled]='!itemForm.valid'>
+                                Save
+                            </button>
+                        </span>
+              <span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               [routerLink]="['/items']">
+                                Cancel
+                            </a>
+                        </span>
+              <span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               (click)="deleteItem()">
+                                Delete
+                            </a>
+                        </span>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <!--<div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>-->
+    </div>
+
+  </div>
+</div>

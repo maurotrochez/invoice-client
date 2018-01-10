@@ -1,6 +1,6 @@
 export interface IItem {
-  itemId: string;
-  name: string;
-  code: string;
-  initialValue: number;
+  ItemId: string;
+  Name: string;
+  Code: string;
+  Value: number;
 }

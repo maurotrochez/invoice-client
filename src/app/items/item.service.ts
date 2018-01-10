@@ -7,6 +7,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import {IItem} from './item';
 import {AppSettings} from '../global';
+import {v4 as uuid} from 'uuid';
 
 @Injectable()
 export class ItemService {
@@ -33,7 +34,7 @@ export class ItemService {
 
   saveItem(item: IItem): Observable<any> {
     const headers = new HttpHeaders().set('Content-type', 'application/json');
-    if (item.itemId === '0') {
+    if (item.ItemId === '0' || item.ItemId === null) {
       return this.createItem(item, {headers: headers});
     }
     return this.updateItem(item, {headers: headers});
@@ -57,12 +58,20 @@ export class ItemService {
       .catch(this.errorHandler);
   }
 
+  deleteItem(id: string): Observable<any> {
+    const headers = new HttpHeaders().set('Content-type', 'application/json');
+    const url = `${AppSettings.API_ENDPOINT}${this.baseUrl}/${id}`;
+    return this.http.delete(url)
+      .do(data => console.log('deleteItem'))
+      .catch(this.errorHandler);
+  }
+
   private initializeItem(): IItem {
     return {
-      itemId: null,
-      code: '',
-      name: '',
-      initialValue: 0
+      ItemId: uuid(),
+      Code: '',
+      Name: '',
+      Value: 0
     };
   }
 
