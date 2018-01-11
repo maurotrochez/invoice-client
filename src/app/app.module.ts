@@ -7,6 +7,7 @@ import {ItemsModule} from './items/items.module';
 import {RouterModule} from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import {HttpClientModule} from '@angular/common/http';
+import {InvoicesModule} from './invoices/invoices.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     ItemsModule,
+    InvoicesModule,
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent}
     ])

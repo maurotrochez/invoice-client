@@ -1,3 +1,52 @@
-<p>
-  invoice-list works!
-</p>
+<div class='blog-main'>
+  <div class="sidebar-module sidebar-module-inset">
+    <h4>
+      {{pageTitle}}
+    </h4>
+    <br>
+
+    <div class="row">
+      <div class="col-md-11">
+
+      </div>
+      <div class="col-md-0">
+        <a class="btn btn-primary btn-sm"
+           [routerLink]="['/invoicesEdit/0']">
+          Add
+        </a>
+      </div>
+    </div>
+
+    <div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>
+
+    <div class='row'>
+      <table class='table table-sm table-striped' style='margin-top: 2%;'
+             *ngIf='invoices && invoices.length'>
+        <thead>
+        <tr>
+          <th>Consecutive</th>
+          <th>Total</th>
+          <th># Items</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let invoice of invoices'>
+          <td><a [routerLink]="['/invoices', invoice.InvoiceId]">
+            {{invoice.Consecutive}}
+          </a>
+          </td>
+          <td>{{ invoice.Total}}</td>
+          <td>#</td>
+
+          <td style="text-align: right;">
+            <a class="btn btn-primary btn-sm"
+               [routerLink]="['/invoicesEdit', invoice.InvoiceId]">
+              Edit
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

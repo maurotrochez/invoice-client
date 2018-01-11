@@ -30,7 +30,7 @@ export class InvoiceService {
 
   saveInvoice(invoice: IInvoice): Observable<any> {
     const headers = new HttpHeaders().set('Content-type', 'application/json');
-    if (invoice.invoiceId === '0') {
+    if (invoice.InvoiceId === '0') {
       return this.createInvoice(invoice, {headers: headers});
     }
     return this.updateInvoice(invoice, {headers: headers});
@@ -46,7 +46,7 @@ export class InvoiceService {
   }
 
   private updateInvoice(invoice: IInvoice, options: {}): Observable<IInvoice> {
-    return this.http.put(`${AppSettings.API_ENDPOINT}${this.baseUrl}`, invoice, options)
+    return this.http.put(`${AppSettings.API_ENDPOINT}${this.baseUrl}/${invoice.InvoiceId}`, invoice, options)
       .map(() => invoice)
       .do(data => {
         return data;
@@ -54,12 +54,20 @@ export class InvoiceService {
       .catch(this.errorHandler);
   }
 
+  deleteInvoice(id: string): Observable<any> {
+    const headers = new HttpHeaders().set('Content-type', 'application/json');
+    const url = `${AppSettings.API_ENDPOINT}${this.baseUrl}/${id}`;
+    return this.http.delete(url)
+      .do(data => console.log('deleteInvoice'))
+      .catch(this.errorHandler);
+  }
+
   private initializeInvoice(): IInvoice {
     return {
-      invoiceId: null,
-      consecutive: '',
-      total: 0,
-      items: []
+      InvoiceId: '0',
+      Consecutive: '',
+      Total: 0,
+      Items: []
     };
   }
 

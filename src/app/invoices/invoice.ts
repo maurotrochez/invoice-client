@@ -1,8 +1,8 @@
 import {IItem} from '../items/item';
 
 export interface IInvoice {
-  invoiceId: string;
-  consecutive: string;
-  total: number;
-  items: IItem[];
+  InvoiceId: string;
+  Consecutive: string;
+  Total: number;
+  Items: IItem[];
 }

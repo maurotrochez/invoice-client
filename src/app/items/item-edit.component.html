@@ -27,7 +27,7 @@
                         </span>
             </div>
           </div>
-          <div class="form-group row" [ngClass]="{'has-error': displayMessage.dependencia}">
+          <div class="form-group row">
             <label class="col-md-2 control-label form-control-sm" for="nameId">Name</label>
 
             <div class="col-md-8">
@@ -36,6 +36,17 @@
                      type="text"
                      placeholder="Name"
                      formControlName="Name"/>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-2 control-label form-control-sm" for="valueId">Value</label>
+
+            <div class="col-md-8">
+              <input class="form-control form-control-sm"
+                     id="valueId"
+                     type="text"
+                     placeholder="Value"
+                     formControlName="Value"/>
             </div>
           </div>
 

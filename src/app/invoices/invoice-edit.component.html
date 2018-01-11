@@ -1,0 +1,91 @@
+<div class="blog-main">
+  <div class="sidebar-module sidebar-module-inset">
+
+    <h3>{{pageTitle}}</h3>
+    <hr>
+
+    <div >
+      <form
+        novalidate
+        (ngSubmit)="saveInvoice()"
+        [formGroup]="invoiceForm">
+
+
+        <fieldset>
+          <div class="form-group row"
+               [ngClass]="{'has-danger': displayMessage.consecutive }">
+            <label class="col-md-2 control-label" for="consecutiveId">Consecutive</label>
+
+            <div class="col-md-6">
+              <input class="form-control"
+                     id="consecutiveId"
+                     placeholder="Consecutive"
+                     type="text"
+                     formControlName="Consecutive"/>
+              <span class="help-block" *ngIf="displayMessage.consecutive">
+                                {{displayMessage.consecutive}}
+                        </span>
+            </div>
+          </div>
+
+          <div class="form-group row" >
+            <label class="col-md-2 control-label form-control-sm" for="itemId">Item</label>
+
+            <div class="col-md-8">
+              <!--<input class="form-control"-->
+              <!--id="itemId"-->
+              <!--type="text"-->
+              <!--placeholder="Grupo de pregunta"-->
+              <!--formControlName="grupoPregun"/>-->
+              <select class="custom-select form-control form-control-sm" id="itemId"
+                      formControlName="ItemId">
+                <option *ngFor="let item of items" [value]="item.ItemId" (click)="assignValue(item.Value)">{{item.code}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row" [ngClass]="{'has-error': displayMessage.total}">
+            <label class="col-md-2 control-label form-control-sm" for="totalId">Total</label>
+
+            <div class="col-md-8">
+              <input class="form-control form-control-sm"
+                     id="totalId"
+                     type="text"
+                     placeholder="Total"
+                     formControlName="Total"/>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary"
+                                    type="submit"
+                                    style="width:80px;margin-right:10px"
+                                    [disabled]='!invoiceForm.valid'>
+                                Save
+                            </button>
+                        </span>
+              <span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               [routerLink]="['/invoices']">
+                                Cancel
+                            </a>
+                        </span>
+              <span>
+                            <a class="btn btn-default"
+                               style="width:80px"
+                               (click)="deleteInvoice()">
+                                Delete
+                            </a>
+                        </span>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <!--<div class='has-error' *ngIf='errorMessage'>{{errorMessage}}</div>-->
+    </div>
+
+  </div>
+</div>
