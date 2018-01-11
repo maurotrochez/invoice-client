@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {AppSettings} from '../global';
-import {IItem} from '../items/item';
 import {IInvoice} from './invoice';
 
 @Injectable()
@@ -37,6 +36,7 @@ export class InvoiceService {
   }
 
   private createInvoice(invoice: IInvoice, options: {}): Observable<any> {
+    invoice.InvoiceId = undefined;
     return this.http.post(`${AppSettings.API_ENDPOINT}${this.baseUrl}`, invoice, options)
       .do(data => {
         return data;
@@ -67,7 +67,7 @@ export class InvoiceService {
       InvoiceId: '0',
       Consecutive: '',
       Total: 0,
-      Items: []
+      ItemId: null
     };
   }
 

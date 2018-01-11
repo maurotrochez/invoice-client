@@ -38,8 +38,8 @@
               <!--placeholder="Grupo de pregunta"-->
               <!--formControlName="grupoPregun"/>-->
               <select class="custom-select form-control form-control-sm" id="itemId"
-                      formControlName="ItemId">
-                <option *ngFor="let item of items" [value]="item.ItemId" (click)="assignValue(item.Value)">{{item.code}}</option>
+                      formControlName="ItemId" >
+                <option *ngFor="let item of items" [value]="item.ItemId">{{item.Code}}</option>
               </select>
             </div>
           </div>

@@ -4,5 +4,6 @@ export interface IInvoice {
   InvoiceId: string;
   Consecutive: string;
   Total: number;
-  Items: IItem[];
+  ItemId: string;
+  ItemName?: string;
 }
