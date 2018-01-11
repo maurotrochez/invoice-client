@@ -41,6 +41,7 @@ export class ItemService {
   }
 
   private createItem(item: IItem, options: {}): Observable<any> {
+    item.ItemId = undefined;
     return this.http.post(`${AppSettings.API_ENDPOINT}${this.baseUrl}`, item, options)
       .do(data => {
         return data;
@@ -50,7 +51,7 @@ export class ItemService {
   }
 
   private updateItem(item: IItem, options: {}): Observable<IItem> {
-    return this.http.put(`${AppSettings.API_ENDPOINT}${this.baseUrl}`, item, options)
+    return this.http.put(`${AppSettings.API_ENDPOINT}${this.baseUrl}/${item.ItemId}`, item, options)
       .map(() => item)
       .do(data => {
         return data;
@@ -68,7 +69,7 @@ export class ItemService {
 
   private initializeItem(): IItem {
     return {
-      ItemId: uuid(),
+      ItemId: '0',
       Code: '',
       Name: '',
       Value: 0

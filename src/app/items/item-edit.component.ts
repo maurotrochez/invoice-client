@@ -92,7 +92,7 @@ export class ItemEditComponent implements OnInit, AfterViewInit, OnDestroy {
       this.itemForm.reset();
     this.item = item;
 
-    if (!this.item.ItemId)
+    if (this.item.ItemId === '0')
       this.pageTitle = 'Add item';
     else
       this.pageTitle = `Edit item: ${this.item.Code} - ${this.item.Name}`;
